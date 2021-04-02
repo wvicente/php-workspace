@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+
+  php:
+    container_name: my-php-workspace
+    restart: always
+    build:
+      context: ./
+      dockerfile: DockerFile
+    shm_size: 1g # shared memory size. Unit is optional and can be b (bytes), k (kilobytes), m (megabytes), or g (gigabytes).
+    working_dir: /var/www/html/ # source code directory
+    ports:
+      - target: 80      # the port inside the container
+        published: 8080 # the publicly exposed port
+        protocol: tcp   # the port protocol (tcp or udp)
+        mode: host      # 'host' for publishing a host port on each node, or 'ingress' for a swarm mode port to be load balanced.
+    volumes:
+      - ./source:/var/www/html/ # source code directory volume mapping
