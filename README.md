@@ -43,7 +43,7 @@ $ docker-compose up -d
 ### To attach to the container you can use the container's ID or name
 
 ```
-$ docker container attach my-php-workspace
+$ docker container exec -it -u root my-php-workspace /bin/sh
 ```
 
 ### To see what is currently running
